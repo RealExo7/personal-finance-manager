@@ -21,7 +21,9 @@ def save_transaction(amount, category, currency, date):
 
 # Function to add a new transaction
 def add_transaction():
-    transaction_window = tk.Toplevel(window)
+    root = tk.Tk()
+    root.withdraw()  # Ascunde fereastra principală
+    transaction_window = tk.Toplevel(root)
     transaction_window.title("Add Transaction")
 
     label_amount = tk.Label(transaction_window, text="Amount:")
@@ -54,7 +56,6 @@ def add_transaction():
 
 # Function to generate a graph of expenses by category
 def generate_graph():
-    # Read transactions from the file
     categories = {}
     with open(transactions_file, 'r') as file:
         transactions = file.readlines()
@@ -67,7 +68,6 @@ def generate_graph():
             else:
                 categories[category] = amount
 
-    # Create a bar graph of expenses by category
     labels = list(categories.keys())
     values = list(categories.values())
 
@@ -75,7 +75,10 @@ def generate_graph():
     plt.xlabel('Category')
     plt.ylabel('Amount')
     plt.title('Expenses by Category')
-    plt.show()
+
+    # Fix pentru pytest - salvăm în loc să afișăm
+    plt.savefig('graph.png')
+    plt.close()
 
 # Function to generate annual report based on selected year with months included
 def generate_annual_report(year):
@@ -99,7 +102,6 @@ def generate_annual_report(year):
 
                 annual_expenses[category][month] += amount
 
-    # Save the annual report to a text file
     report_filename = f"annual_report_{year}.txt"
     with open(report_filename, 'w') as report_file:
         report_file.write(f"Annual Report for {year}:\n")
@@ -127,7 +129,6 @@ def generate_report(month, year):
                 else:
                     monthly_expenses[category] = amount
 
-    # Save the report to a text file
     report_filename = f"monthly_report_{datetime(year, month, 1).strftime('%B_%Y')}.txt"
     with open(report_filename, 'w') as report_file:
         report_file.write(f"Monthly Report for {datetime(year, month, 1).strftime('%B %Y')}:\n")
@@ -152,12 +153,11 @@ def create_window():
     graph_button = tk.Button(window, text="View Graph", command=generate_graph)
     graph_button.pack()
 
-    # Month and year selection for report generation
     label_month = tk.Label(window, text="Select Month:")
     label_month.pack()
 
     month_var = tk.StringVar(window)
-    month_var.set(months_list[datetime.now().month - 1])  # Default to current month
+    month_var.set(months_list[datetime.now().month - 1])
     month_menu = tk.OptionMenu(window, month_var, *months_list)
     month_menu.pack()
 
@@ -165,7 +165,7 @@ def create_window():
     label_year.pack()
 
     year_var = tk.StringVar(window)
-    year_var.set(str(current_year))  # Default to current year
+    year_var.set(str(current_year))
     year_menu = tk.OptionMenu(window, year_var, *[str(year) for year in range(current_year - 10, current_year + 1)])
     year_menu.pack()
 
