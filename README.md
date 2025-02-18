@@ -20,3 +20,7 @@ Technologies Used
 Installation & Running the Application
 
 >See the instalation.txt file
+
+CI/CD - GitHub Actions
+
+>The project uses GitHub Actions to automatically run tests on every push or pull request to the main branch.
