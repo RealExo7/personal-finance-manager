@@ -1,7 +1,7 @@
 # personal-finance-manager
 
 Description
-This application allows users to monitor their income and expenses intuitively. Transactions can be categorized into predefined categories (such as housing, work, and entertainment), and the application provides an overview of finances through monthly and yearly reports. Additionally, it includes graphical visualizations to analyze spending trends.
+>This application allows users to monitor their income and expenses intuitively. Transactions can be categorized into predefined categories (such as housing, work, and entertainment), and the application provides an overview of >finances through monthly and yearly reports. Additionally, it includes graphical visualizations to analyze spending trends.
 
 Features
 >Add, view, and delete transactions
