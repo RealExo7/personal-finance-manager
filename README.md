@@ -24,3 +24,5 @@ Installation & Running the Application
 CI/CD - GitHub Actions
 
 >The project uses GitHub Actions to automatically run tests on every push or pull request to the main branch.
+
+This project was developed by Leahu Artiom for METODI DI SVILUPPO AGILE
